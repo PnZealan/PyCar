@@ -8,7 +8,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(22, GPIO.OUT, initial = GPIO.LOW)
 GPIO.setup(23, GPIO.IN)
 
-def Ranging():
+def Ranging():   #超声波测量距离
     GPIO.output(22, GPIO.HIGH)
     time.sleep(0.000010)
     GPIO.output(22, GPIO.LOW)
@@ -19,7 +19,7 @@ def Ranging():
 	    return 1000.00
     t_1 = time.time()
     while GPIO.input(23):
-        pass 
+        pass
     t_2 = time.time()
     return (t_2 - t_1) * 17000
 
@@ -30,7 +30,6 @@ if __name__ == '__main__':
 	d_1 = Ranging()
 	dt = abs(d - d_1)
 	if dt > 20.00:
-	    print dt	
+	    print dt
 	else:
 	    print  '############################', d
-

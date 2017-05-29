@@ -1,3 +1,4 @@
+#-*- coding:utf-8 -*-
 from hc import Ranging as R
 import serial
 import time
@@ -14,16 +15,16 @@ def run(tar):
     except Exception, e:
         print e
 
-def Evalue():
+def Evalue():   #实现测量基准的动态变化
     global bench
     global count
     global Flag
-    while True:
-	d_1 = R()
-	time.sleep(0.02)
-	d = R()
-	if abs(d-d_1) < 30.00:
-	    break
+    while True:  #测量数据去杂
+    	d_1 = R()
+    	time.sleep(0.02)
+    	d = R()
+    	if abs(d-d_1) < 30.00:
+    	    break
     if d < 30 and Flag:
         count += 1
     if count > 8 and Flag:
@@ -43,7 +44,7 @@ def Evalue():
     print d
     return d
 '''
-def auto_run():
+def auto_run():   #自动驾驶主体
     global bench
     d = Evalue()
     if d < bench:
